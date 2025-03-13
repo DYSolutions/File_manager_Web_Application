@@ -2,10 +2,15 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import CreateFolder from "./CreateFolder";
+import FileChoose from "./FileChoose";
 
 export default function Sidebar() {
     const router = useRouter();
     const [isActive, setIsActive] = useState("Home");
+
+    const [isFolderCreate, setIsFolderCreate] = useState(false)
+    const [isFileCreate, setIsFileCreate] = useState(false)
 
     const handleActive = (page: string) => {
         setIsActive(page);
@@ -28,20 +33,20 @@ export default function Sidebar() {
     ];
 
     return (
-        <div className="drawer lg:drawer-open bg-white flex flex-col items-center h-screen py-5">
-            <ul className="menu text-base-content min-h-full p-4 flex flex-col items-center gap-5">
+        <div className="bg-white flex flex-col items-center h-screen py-5">
+            <ul className="text-base-content min-h-full p-4 flex flex-col items-center gap-5">
                 <div className="flex flex-row gap-4 items-center justify-center">
                     <Image src="/logo.webp" width={30} height={30} alt="logo" />
                     <h1 className="text-xl font-sans font-bold text-[#008cff]">File Manager</h1>
                 </div>
 
-                <button className="btn btn-active btn-primary w-[160px] hover:scale-105 transition-all">
+                <button onClick={()=>setIsFileCreate(true)} className="btn btn-active btn-primary w-[160px] hover:scale-105 transition-all">
                     Add New File
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
                 </button>
-                <button className="btn btn-active btn-info text-white w-[160px] hover:scale-105 transition-all">
+                <button onClick={() => setIsFolderCreate(true)} className="btn btn-active btn-info text-white w-[160px] hover:scale-105 transition-all">
                     New Folder
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
@@ -78,6 +83,13 @@ export default function Sidebar() {
                     ))}
                 </ul>
             </ul>
+            {isFolderCreate && <CreateFolder
+                onClose={() => setIsFolderCreate(false)}
+            />}
+
+            {isFileCreate && <FileChoose
+                onClose={() => setIsFileCreate(false)}
+            />}
         </div>
     );
 }

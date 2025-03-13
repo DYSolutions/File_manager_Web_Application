@@ -20,10 +20,6 @@ export default function Dashboard() {
   //     return <Loading />;
   //   }
 
-  const folderClick=(name:string)=>{
-    router.push(`/dashboard/${name}`)
-  }
-
   return (
     <div className="p-4 min-h-screen w-full flex flex-col items-center">
       <div className="flex flex-col w-[95%] bg-white h-[auto] rounded-2xl mt-[30px] p-6 gap-4">
@@ -32,11 +28,11 @@ export default function Dashboard() {
           <a href="">view more</a>
         </div>
         <div className="grid grid-cols-5 w-auto gap-0">
-          <div onClick={()=>folderClick("test")} className="p-4 border border-[#74717136] rounded-md h-[120px] w-[120px] flex flex-col items-center justify-center hover:scale-105 transition-all cursor-pointer"><Image src="/folder.png" height={50} width={50} alt="folder" />test</div>
-          <div onClick={()=>folderClick("test2")} className="p-4 border border-[#74717136] rounded-md h-[120px] w-[120px] flex flex-col items-center justify-center"><Image src="/folder.png" height={50} width={50} alt="folder" />test</div>
-          <div onClick={()=>folderClick("test3")} className="p-4 border border-[#74717136] rounded-md h-[120px] w-[120px] flex flex-col items-center justify-center"><Image src="/folder.png" height={50} width={50} alt="folder" />test</div>
-          <div onClick={()=>folderClick("test4")} className="p-4 border border-[#74717136] rounded-md h-[120px] w-[120px] flex flex-col items-center justify-center"><Image src="/folder.png" height={50} width={50} alt="folder" />test</div>
-          <div onClick={()=>folderClick("test5")} className="p-4 border border-[#74717136] rounded-md h-[120px] w-[120px] flex flex-col items-center justify-center"><Image src="/folder.png" height={50} width={50} alt="folder" />test</div>
+          <div className="p-4 border border-[#74717136] rounded-md h-[120px] w-[120px] flex flex-col items-center justify-center hover:scale-105 transition-all cursor-pointer"><Image src="/folder.png" height={50} width={50} alt="folder" />test</div>
+          <div className="p-4 border border-[#74717136] rounded-md h-[120px] w-[120px] flex flex-col items-center justify-center"><Image src="/folder.png" height={50} width={50} alt="folder" />test</div>
+          <div className="p-4 border border-[#74717136] rounded-md h-[120px] w-[120px] flex flex-col items-center justify-center"><Image src="/folder.png" height={50} width={50} alt="folder" />test</div>
+          <div className="p-4 border border-[#74717136] rounded-md h-[120px] w-[120px] flex flex-col items-center justify-center"><Image src="/folder.png" height={50} width={50} alt="folder" />test</div>
+          <div className="p-4 border border-[#74717136] rounded-md h-[120px] w-[120px] flex flex-col items-center justify-center"><Image src="/folder.png" height={50} width={50} alt="folder" />test</div>
         </div>
       </div>
 

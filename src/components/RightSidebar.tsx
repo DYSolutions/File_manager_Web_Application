@@ -51,7 +51,7 @@ export default function RightSidebar() {
     ]
 
     return (
-        <div className="min-h-screen bg-white px-4 py-4 flex flex-col items-center gap-5">
+        <div className="min-h-screen bg-white px-9 py-4 flex flex-col items-center gap-5">
             <div className="flex flex-row justify-start items-center gap-3 w-full">
                 {profileImage && (
                     <Image
