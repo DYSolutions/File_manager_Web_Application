@@ -4,6 +4,7 @@ import Image from "next/image";
 import { signOut } from "next-auth/react";
 import ConfirmSignOut from "./ConfirmSignOut";
 import { useState } from "react";
+import UnderDeveloping from "./UnderDeveloping";
 
 type Storage = {
     name: string
@@ -24,10 +25,15 @@ export default function RightSidebar() {
     const { data: session } = useSession()
     const profileImage = session?.user?.image?.trim() ? session.user.image : null;
     const [isSignOut, setIsSignOut] = useState(false)
+    const [isModel,setIsModel]=useState(false)
 
     const logOut = async () => {
         await signOut({ callbackUrl: "/" });
     };
+
+    const onClose=()=>{
+        setIsSignOut(false)
+    }
 
     const storage: Storage[] = [
         { name: "image", width: "30%", color: "blue" },
@@ -45,7 +51,7 @@ export default function RightSidebar() {
     ]
 
     return (
-        <div className="min-h-screen bg-white p-5 flex flex-col items-center gap-5">
+        <div className="min-h-screen bg-white px-4 py-4 flex flex-col items-center gap-5">
             <div className="flex flex-row justify-start items-center gap-3 w-full">
                 {profileImage && (
                     <Image
@@ -107,7 +113,20 @@ export default function RightSidebar() {
                     </div>
                 ))}
             </div>
-            {isSignOut && <ConfirmSignOut/>}
+
+            <div className="flex flex-col justify-center items-center gap-1 p-5 rounded-2xl w-full bg-[#d1f2f8]">
+            <h1 className="text-[#0000008e] text-2xl font-semibold">Need More Space ?</h1>
+            <span className="text-[15px]">Get more space to upgrading the plan</span>
+            <button onClick={()=>setIsModel(true)} className="w-[130px] p-2 bg-[blue] rounded-md text-white cursor-pointer hover:bg-[#006eff]">Upgrade</button>
+            </div>
+            {isSignOut && <ConfirmSignOut
+            onClose={onClose}
+            onConfirm={logOut}
+            />}
+
+            {isModel && <UnderDeveloping 
+            onClose={()=>setIsModel(false)}
+        />} 
         </div>
     )
 }
