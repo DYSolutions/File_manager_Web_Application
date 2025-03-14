@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import CreateFolder from "./CreateFolder";
 import FileChoose from "./FileChoose";
+import Toast from "./Toast";
 
 export default function Sidebar() {
     const router = useRouter();
@@ -12,14 +13,17 @@ export default function Sidebar() {
     const [isFolderCreate, setIsFolderCreate] = useState(false)
     const [isFileCreate, setIsFileCreate] = useState(false)
 
+    const [isToast, setIsToast] = useState(false)
+    const [toast, setToast] = useState("")
+
     const handleActive = (page: string) => {
         setIsActive(page);
 
         const routes: { [key: string]: string } = {
             Home: "/dashboard",
-            Files: "/dashboard",
-            Starred: "/dashboard",
-            Trash: "/dashboard",
+            Files: "/dashboard/onDeveloping",
+            Starred: "/dashboard/onDeveloping",
+            Trash: "/dashboard/onDeveloping",
         };
 
         if (routes[page]) router.push(routes[page]);
@@ -32,15 +36,22 @@ export default function Sidebar() {
         { name: "Trash", icon: "trash" },
     ];
 
+    const showToast = (message: string) => {
+        setToast(message);
+        setTimeout(() => {
+            setToast(""); // Hide toast after 3 seconds
+        }, 3000);
+    };
+
     return (
-        <div className="bg-white flex flex-col items-center h-screen py-5">
+        <div className="bg-white flex flex-col items-center h-[100%] py-5">
             <ul className="text-base-content min-h-full p-4 flex flex-col items-center gap-5">
                 <div className="flex flex-row gap-4 items-center justify-center">
                     <Image src="/logo.webp" width={30} height={30} alt="logo" />
                     <h1 className="text-xl font-sans font-bold text-[#008cff]">File Manager</h1>
                 </div>
 
-                <button onClick={()=>setIsFileCreate(true)} className="btn btn-active btn-primary w-[160px] hover:scale-105 transition-all">
+                <button onClick={() => setIsFileCreate(true)} className="btn btn-active btn-primary w-[160px] hover:scale-105 transition-all">
                     Add New File
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
@@ -84,12 +95,13 @@ export default function Sidebar() {
                 </ul>
             </ul>
             {isFolderCreate && <CreateFolder
-                onClose={() => setIsFolderCreate(false)}
+                onClose={() => {setIsFolderCreate(false),showToast("Folder Creatd Sucsessfull !")}}
+            />}
+            {isFileCreate && <FileChoose
+                onClose={() => { setIsFileCreate(false) }}
             />}
 
-            {isFileCreate && <FileChoose
-                onClose={() => setIsFileCreate(false)}
-            />}
+            {toast && <Toast setToast={toast} />}
         </div>
     );
 }

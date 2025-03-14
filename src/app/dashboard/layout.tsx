@@ -28,7 +28,7 @@ export default function DashboardLayout({
   return (
     <>
     {status==="authenticated" && (
-    <div className="flex flex-row h-screen">
+    <div className="flex flex-row">
       <div className="w-[15%]">
         <Sidebar />
       </div>

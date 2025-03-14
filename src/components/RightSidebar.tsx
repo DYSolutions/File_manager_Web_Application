@@ -44,14 +44,14 @@ export default function RightSidebar() {
     ]
 
     const storageTable: StorageTable[] = [
-        { name: 'Images', bgColor: "#b3e8ff", color: "#0088ff", storage: "1", files: 29, icon: "image" },
-        { name: 'Videos', bgColor: "#fffeb3", color: "#fcf003", storage: "1", files: 29, icon: "video" },
-        { name: 'Documents', bgColor: "#bdffb3", color: "#1eff00", storage: "1", files: 29, icon: "doc" },
-        { name: 'Others', bgColor: "#ffb3ba", color: "#ff0019", storage: "1", files: 29, icon: "other" },
+        { name: 'Images', bgColor: "#b3e8ff", color: "#0088ff", storage: "2", files: 10, icon: "image" },
+        { name: 'Videos', bgColor: "#fffeb3", color: "#fcf003", storage: "1", files: 9, icon: "video" },
+        { name: 'Documents', bgColor: "#bdffb3", color: "#1eff00", storage: "1", files: 12, icon: "doc" },
+        { name: 'Others', bgColor: "#ffb3ba", color: "#ff0019", storage: "2", files: 1, icon: "other" },
     ]
 
     return (
-        <div className="min-h-screen bg-white px-9 py-4 flex flex-col items-center gap-5">
+        <div className="h-[100%] bg-white px-9 py-4 flex flex-col items-center gap-5">
             <div className="flex flex-row justify-start items-center gap-3 w-full">
                 {profileImage && (
                     <Image
@@ -73,7 +73,7 @@ export default function RightSidebar() {
             </div>
 
             <div className="w-full flex flex-col justify-start mt-5 gap-2">
-                <h1 className="text-3xl font-semibold">1.6 MB <span className="text-sm">used of</span> 50 MB</h1>
+                <h1 className="text-3xl font-semibold">6.6 MB <span className="text-sm">used of</span> 50 MB</h1>
                 <div className="w-full h-3 flex flex-row">
                     {storage.map((item, index) => (
                         <div key={index} style={{ height: "100%", width: `${item.width}`, backgroundColor: `${item.color}` }}></div>

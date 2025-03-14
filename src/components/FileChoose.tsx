@@ -45,7 +45,7 @@ const FileChoose = ({ onClose }: FileChooseProps) => {
                         Choose file
                         <input type="file" className="bg-[#cec7c7] w-[100px] h-[100px] absolute opacity-0 cursor-pointer"/>
                     </div>
-                    <button  onClick={() => toast.success("File uploaded successfully!")} className="btn btn-active btn-info text-white w-[160px] hover:bg-[#0077ff] transition-all">Upload</button>
+                    <button  onClick={() => toast.error("Sorry you cant't upload any file right now!")} className="btn btn-active btn-info text-white w-[160px] hover:bg-[#0077ff] transition-all">Upload</button>
                 </div>
 
             </motion.div>
